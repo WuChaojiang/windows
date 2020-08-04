@@ -1,6 +1,7 @@
 // main.cpp:
 #include "stdafx.h"
 #include "FirstWindow.h"
+#include "UploadDialog.h"
 CAppModule _Module;
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
@@ -11,13 +12,12 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	MSG msg;
 
 	FirstWindow window;
-	//CRect rc;
-	//rc.top = 10;
-	//rc.bottom = 500;
-	//rc.left = 10;
-	//rc.right = 500;
-	//window.Create(NULL, rc, L"蜂网-风行号上传工具", WS_VISIBLE | WS_SYSMENU, NULL, 0u, NULL);
-	window.DoModal();
+	int nRet = window.DoModal();
+
+	CUploadDialog uploadDlg;
+	nRet = uploadDlg.DoModal();
+
+	::PostQuitMessage(0);
 
 	while (GetMessage(&msg, NULL, 0, 0) > 0)
 	{
